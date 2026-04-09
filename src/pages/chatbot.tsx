@@ -3,7 +3,7 @@ import { Sidebar } from "@/components/Sidebar";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Send, Bot, User, Loader2, Zap, Mail, Phone, MapPin } from "lucide-react";
+import { Send, Bot, User, Loader2, Zap, Mail, Phone, MapPin, Mic, MicOff } from "lucide-react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { motion } from "framer-motion";
 
@@ -72,11 +72,68 @@ const Chatbot = () => {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showContact, setShowContact] = useState(false);
+  const [isListening, setIsListening] = useState(false);
+  const [usedVoice, setUsedVoice] = useState(false);
+  
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const recognitionRef = useRef<any>(null);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const SpeechRecognition = window.SpeechRecognition || (window as any).webkitSpeechRecognition;
+      if (SpeechRecognition) {
+        recognitionRef.current = new SpeechRecognition();
+        recognitionRef.current.continuous = true;
+        recognitionRef.current.interimResults = true;
+        
+        recognitionRef.current.onresult = (event: any) => {
+          let transcript = "";
+          for (let i = 0; i < event.results.length; i++) {
+            transcript += event.results[i][0].transcript;
+          }
+          setInput(transcript);
+        };
+        
+        recognitionRef.current.onerror = (event: any) => {
+          console.error("Speech recognition error", event.error);
+          setIsListening(false);
+        };
+        
+        recognitionRef.current.onend = () => {
+          setIsListening(false);
+        };
+      }
+    }
+  }, []);
+
+  const toggleListening = () => {
+    if (isListening) {
+      recognitionRef.current?.stop();
+      setIsListening(false);
+    } else {
+      if (recognitionRef.current) {
+        setInput(""); // Clear input when starting to listen
+        recognitionRef.current.start();
+        setIsListening(true);
+        setUsedVoice(true); // Tag that they used their voice
+      } else {
+        alert("Sorry, your browser does not support voice recognition. Try Google Chrome or Microsoft Edge!");
+      }
+    }
+  };
+
+  const speakResponse = (text: string) => {
+    if ("speechSynthesis" in window) {
+      window.speechSynthesis.cancel(); // stop current audio if playing
+      const cleanText = text.replace(/\*/g, '').replace(/_/g, ''); // Remove markdown formatting
+      const utterance = new SpeechSynthesisUtterance(cleanText);
+      window.speechSynthesis.speak(utterance);
+    }
+  };
 
   const handleSendMessage = async () => {
     if (!input.trim() || isLoading) return;
@@ -134,6 +191,12 @@ const Chatbot = () => {
 
       const modelResponse: Message = { id: Date.now() + 1, role: "model", text: botResponse };
       setMessages((prev) => [...prev, modelResponse]);
+
+      // If the user used their voice to ask, speak the answer back to them out loud!
+      if (usedVoice) {
+        speakResponse(botResponse);
+        setUsedVoice(false); // Reset it for the next query
+      }
     } catch (error: any) {
       console.error("Error:", error);
       setMessages((prev) => [
@@ -205,12 +268,21 @@ const Chatbot = () => {
               <div ref={messagesEndRef} />
             </div>
             <div className="flex space-x-2">
+              <Button 
+                variant={isListening ? "destructive" : "secondary"} 
+                onClick={toggleListening} 
+                disabled={isLoading}
+                title="Voice Input"
+                className={isListening ? "animate-pulse" : ""}
+              >
+                {isListening ? <MicOff className="h-5 w-5" /> : <Mic className="h-5 w-5" />}
+              </Button>
               <Input
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyPress={handleKeyPress}
-                placeholder="Type your message here..."
+                placeholder="Type or speak your message here..."
                 className="flex-grow"
                 disabled={isLoading}
               />
