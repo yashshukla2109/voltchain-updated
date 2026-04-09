@@ -97,7 +97,7 @@ const Chatbot = () => {
       if (/summary|account|transactions/i.test(userMessage.text)) {
         botResponse = getEnergySummary();
       } else if (GEMINI_API_KEY) {
-        const geminiModel = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+        const geminiModel = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
         
         // Gemini history must start with 'user', so we remove the initial model greeting
         let filteredMessages = messages;
