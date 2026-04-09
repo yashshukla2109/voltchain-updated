@@ -8,8 +8,9 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import { motion } from "framer-motion";
 
 // ⚠ WARNING: Directly embedding the API key in client-side code is a SECURITY RISK
-const GEMINI_API_KEY = "AIzaSyC-vg0nYAo0ybb5jHLxXJTmDLkCfcKMv24";
-const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
+// We must use environment variables so Google doesn't automatically revoke the key!
+const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
+const genAI = new GoogleGenerativeAI(GEMINI_API_KEY || "missing_key");
 
 // --- Type Definitions ---
 interface Message {
@@ -114,11 +115,11 @@ const Chatbot = () => {
 
       const modelResponse: Message = { id: Date.now() + 1, role: "model", text: botResponse };
       setMessages((prev) => [...prev, modelResponse]);
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error:", error);
       setMessages((prev) => [
         ...prev,
-        { id: Date.now() + 1, role: "model", text: "Oops! Something went wrong." },
+        { id: Date.now() + 1, role: "model", text: `API Error: ${error.message || "Key Revoked or Invalid."}` },
       ]);
     } finally {
       setIsLoading(false);
