@@ -67,6 +67,31 @@ const WalletContent: React.FC = () => {
 
   const features = ["Reliability", "Security", "Ethereum", "Web 3.0", "Low Fees", "Blockchain"];
 
+  const addHardhatNetwork = async () => {
+    try {
+      if (!(window as any).ethereum) return alert("MetaMask is not installed!");
+      await (window as any).ethereum.request({
+        method: "wallet_addEthereumChain",
+        params: [
+          {
+            chainId: "0x7A69", // 31337 Hex
+            chainName: "Hardhat Local",
+            rpcUrls: ["http://127.0.0.1:8545/"],
+            nativeCurrency: {
+              name: "Ethereum",
+              symbol: "ETH",
+              decimals: 18,
+            },
+          },
+        ],
+      });
+      alert("Hardhat Network configured successfully!");
+    } catch (err: any) {
+      console.error(err);
+      alert("Failed to add network: " + err.message);
+    }
+  };
+
   return (
     <>
       {/* Left Column */}
@@ -90,11 +115,18 @@ const WalletContent: React.FC = () => {
 
         <div className="p-5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 shadow-lg flex flex-col gap-2">
           <h2 className="text-white font-semibold text-lg">How to Use</h2>
-          <ol className="text-white text-sm list-decimal list-inside">
+          <ol className="text-white text-sm list-decimal list-inside mb-2">
             <li>Connect your MetaMask wallet</li>
+            <li>Configure Hardhat properly</li>
             <li>Fill in address and amount</li>
             <li>Click Send Now</li>
           </ol>
+          <button
+            onClick={addHardhatNetwork}
+            className="w-full py-2 bg-purple-600/60 hover:bg-purple-600 rounded-xl text-white font-medium text-sm transition-all border border-purple-400/50 shadow-md"
+          >
+            + Add Hardhat Local Network
+          </button>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-6">
