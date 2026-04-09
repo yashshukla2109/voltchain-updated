@@ -52,19 +52,15 @@ const demoEnergyData = {
 
 // --- Helper: Generate Energy Summary ---
 const getEnergySummary = () => {
-  const totalGenerated = demoEnergyData.generation.reduce((sum, e) => sum + e.kWh, 0);
-  const totalConsumed = demoEnergyData.consumption.reduce((sum, e) => sum + e.kWh, 0);
-  const remainingEnergy = totalGenerated - totalConsumed;
-
   const transactionsSummary = demoEnergyData.transactions
     .map(t => `${t.date}: ${t.type} ${t.amount} ${t.currency}`)
     .join("\n");
 
   return `
-Energy Summary:
-- Total Generated: ${totalGenerated.toFixed(2)} kWh
-- Total Consumed: ${totalConsumed.toFixed(2)} kWh
-- Remaining Energy: ${remainingEnergy.toFixed(2)} kWh
+Energy Summary (Today):
+- Total Generated: 45.8 kWh (Up 12.5% from yesterday)
+- Total Consumed: 28.3 kWh
+- Available Surplus to Trade: 17.5 kWh
 
 Recent Transactions:
 ${transactionsSummary}
