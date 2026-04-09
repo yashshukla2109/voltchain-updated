@@ -106,8 +106,28 @@ const Chatbot = () => {
 
         const history = filteredMessages.map(m => ({ role: m.role, parts: [{ text: m.text }] }));
         const chat = geminiModel.startChat({ history });
-        const result = await chat.sendMessage(userMessage.text);
-        botResponse = result.response.text();
+        
+        let retries = 3;
+        let result;
+        while (retries > 0) {
+          try {
+            result = await chat.sendMessage(userMessage.text);
+            break;
+          } catch (err: any) {
+            if (err.message && err.message.includes("503") && retries > 1) {
+              retries--;
+              await new Promise(res => setTimeout(res, 2000)); // Wait 2 seconds and secretly retry
+            } else {
+              throw err;
+            }
+          }
+        }
+        
+        if (result) {
+          botResponse = result.response.text();
+        } else {
+          botResponse = "I apologize, but Google's AI servers are currently completely overloaded right now. Please try again soon!";
+        }
       } else {
         botResponse = "AI service is not available.";
       }
