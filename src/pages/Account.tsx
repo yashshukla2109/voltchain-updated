@@ -47,15 +47,8 @@ const Account = () => {
     loadData();
   }, [navigate]);
 
-  const handleProfileChange = (e: any) => setProfile({ ...profile, [e.target.id]: e.target.value });
   const handlePasswordChange = (e: any) => setPasswords({ ...passwords, [e.target.id]: e.target.value });
   const handlePanelChange = (e: any) => setPanelInputs({ ...panelInputs, [e.target.id]: e.target.value });
-
-  const saveProfile = async () => {
-    await supabase.from("profiles").update(profile).eq("id", profile.id);
-    alert("Personal info updated ✅");
-    navigate("/dashboard"); // redirect after update
-  };
 
   const savePanel = async () => {
     if (panelLoaded) return alert("You can only add panel details once");
@@ -111,26 +104,25 @@ const Account = () => {
             <div className="grid md:grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="first_name">First Name</Label>
-                <Input id="first_name" value={profile.first_name || ""} onChange={handleProfileChange} className="mt-2" />
+                <Input id="first_name" value={profile.first_name || ""} disabled className="mt-2 opacity-70" />
               </div>
               <div>
                 <Label htmlFor="last_name">Last Name</Label>
-                <Input id="last_name" value={profile.last_name || ""} onChange={handleProfileChange} className="mt-2" />
+                <Input id="last_name" value={profile.last_name || ""} disabled className="mt-2 opacity-70" />
               </div>
               <div>
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" value={profile.email || ""} disabled className="mt-2" />
+                <Input id="email" value={profile.email || ""} disabled className="mt-2 opacity-70" />
               </div>
               <div>
                 <Label htmlFor="phone">Phone</Label>
-                <Input id="phone" value={profile.phone || ""} onChange={handleProfileChange} className="mt-2" />
+                <Input id="phone" value={profile.phone || ""} disabled className="mt-2 opacity-70" />
               </div>
               <div className="md:col-span-2">
                 <Label htmlFor="address">Address</Label>
-                <Input id="address" value={profile.address || ""} onChange={handleProfileChange} className="mt-2" />
+                <Input id="address" value={profile.address || ""} disabled className="mt-2 opacity-70" />
               </div>
             </div>
-            <Button className="mt-6" onClick={saveProfile}>Save Changes</Button>
           </Card>
 
           {/* Solar Panel Info (one-time) */}
