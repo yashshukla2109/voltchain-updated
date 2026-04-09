@@ -97,7 +97,10 @@ const Chatbot = () => {
       if (/summary|account|transactions/i.test(userMessage.text)) {
         botResponse = getEnergySummary();
       } else if (GEMINI_API_KEY) {
-        const geminiModel = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+        const geminiModel = genAI.getGenerativeModel({ 
+          model: "gemini-2.5-flash",
+          systemInstruction: `You are the VoltChain Energy AI assistant. The user's live account data is as follows:\n${getEnergySummary()}\n\nUse this data to answer any questions about their generation, consumption, or market transactions warmly and concisely.`
+        });
         
         // Gemini history must start with 'user', so we remove the initial model greeting
         let filteredMessages = messages;
