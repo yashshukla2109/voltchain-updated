@@ -134,8 +134,13 @@ export const TransactionsProvider = ({ children }) => {
   const sendTransaction = async () => {
     try {
       if (ethereum) {
-        await switchNetwork();
         const { addressTo, amount, keyword, message } = formData;
+        
+        if (!addressTo || !amount || !keyword || !message) {
+          return alert("Please fill out all the fields (Address, Amount, Keyword, and Message)!");
+        }
+
+        await switchNetwork();
         const transactionsContract = createEthereumContract();
         const parsedAmount = ethers.utils.parseEther(amount);
 
@@ -166,8 +171,8 @@ export const TransactionsProvider = ({ children }) => {
         console.log("No ethereum object");
       }
     } catch (error) {
-      console.log(error);
-      throw new Error("No ethereum object");
+      console.error(error);
+      alert("Transaction failed: " + (error.message || "Unknown error occurred"));
     }
   };
 
