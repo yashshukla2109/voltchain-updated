@@ -18,8 +18,8 @@ import {
 const DUMMY_POSTS = [
   {
     id: 'dummy-1',
-    author: 'Sarah Chen',
-    avatar: 'S',
+    author: 'Aarav Sharma',
+    avatar: 'A',
     content: 'Just successfully traded 50 kWh of surplus solar energy! The new automated bidding system on VoltChain is incredibly smooth. Has anyone else tried setting up recurring bids?',
     created_at: new Date(Date.now() - 1000 * 60 * 60 * 2).toISOString(),
     liked: true,
@@ -27,8 +27,8 @@ const DUMMY_POSTS = [
     replies: [
       {
         id: 'reply-1',
-        author: 'Marcus Johnson',
-        avatar: 'M',
+        author: 'Arjun Singh',
+        avatar: 'A',
         content: 'Yes! I set it up last week. It automatically sold my excess capacity during peak hours yesterday. Really good returns.',
         created_at: new Date(Date.now() - 1000 * 60 * 45).toISOString(),
       }
@@ -36,8 +36,8 @@ const DUMMY_POSTS = [
   },
   {
     id: 'dummy-2',
-    author: 'Elena Rodriguez',
-    avatar: 'E',
+    author: 'Priyanka Patel',
+    avatar: 'P',
     content: 'Looking for advice on optimizing battery storage cycles for the winter months. My current degradation rate seems a bit higher than expected. Any tips from the community?',
     created_at: new Date(Date.now() - 1000 * 60 * 60 * 24).toISOString(),
     liked: false,
