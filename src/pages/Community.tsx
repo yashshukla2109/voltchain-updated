@@ -5,14 +5,13 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Heart, MessageCircle } from "lucide-react";
+import { Heart } from "lucide-react";
 import { supabase } from "@/lib/supabaseClient";
 
 const Community = () => {
   const [user, setUser] = useState<any>(null);
   const [posts, setPosts] = useState<any[]>([]);
   const [newPost, setNewPost] = useState("");
-  const [commentText, setCommentText] = useState<{ [key: number]: string }>({});
 
   // Fetch user
   useEffect(() => {
@@ -33,7 +32,6 @@ const Community = () => {
       .from("community_posts")
       .select(`
         *,
-        community_comments (*),
         community_likes (*)
       `)
       .order("created_at", { ascending: false });
@@ -84,30 +82,6 @@ const Community = () => {
     fetchPosts(); // Refresh posts to update likes
   };
 
-  // Add comment
-  const handleAddComment = async (postId: number) => {
-    if (!user) return;
-    const text = commentText[postId]?.trim();
-    if (!text) return;
-
-    const { data: comment } = await supabase
-      .from("community_comments")
-      .insert([{ post_id: postId, author: user.email, text }])
-      .select()
-      .single();
-
-    if (comment) {
-      setPosts((prev) =>
-        prev.map((p) =>
-          p.id === postId
-            ? { ...p, community_comments: [...p.community_comments, comment] }
-            : p
-        )
-      );
-      setCommentText((prev) => ({ ...prev, [postId]: "" }));
-    }
-  };
-
   return (
     <div className="min-h-screen gradient-cosmic">
       <div className="mr-64 p-8">
@@ -144,29 +118,7 @@ const Community = () => {
                       <Heart className={post.liked ? "fill-red-500" : ""} />
                       {post.community_likes?.length || 0}
                     </button>
-                    <span>{post.community_comments?.length || 0}</span>
                   </div>
-
-                  <div className="flex items-center gap-2 mt-2">
-                    <Input
-                      placeholder="Write a comment..."
-                      value={commentText[post.id] || ""}
-                      onChange={(e) =>
-                        setCommentText({ ...commentText, [post.id]: e.target.value })
-                      }
-                    />
-                    <Button size="sm" onClick={() => handleAddComment(post.id)}>
-                      Post
-                    </Button>
-                  </div>
-
-                  {/* Show comments */}
-                  {post.community_comments?.map((c) => (
-                    <div key={c.id} className="flex gap-2 text-sm mt-2">
-                      <span className="font-semibold">{c.author}:</span>
-                      <span>{c.text}</span>
-                    </div>
-                  ))}
                 </div>
               </div>
             </Card>
