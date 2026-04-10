@@ -42,8 +42,8 @@ export const Sidebar = () => {
       {/* --- Branding --- */}
       <div className="p-6 border-b border-border">
         <div className="flex items-center gap-2">
-          <Zap className="h-8 w-8 text-primary animate-pulse-glow" />
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
+          <Zap className="h-8 w-8 text-primary" />
+          <h1 className="text-4xl font-bold">
             VoltChain
           </h1>
         </div>
@@ -60,7 +60,7 @@ export const Sidebar = () => {
                 "flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200",
                 "hover:bg-sidebar-accent hover:shadow-md",
                 isActive
-                  ? "bg-primary text-primary-foreground shadow-lg glow-primary"
+                  ? "bg-primary text-primary-foreground shadow-lg "
                   : "text-sidebar-foreground"
               )
             }

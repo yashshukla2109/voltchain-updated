@@ -220,11 +220,7 @@ const Chatbot = () => {
       className={`flex mb-4 ${message.role === "user" ? "justify-end" : "justify-start"}`}
     >
       <div
-        className={`flex max-w-lg p-3 rounded-xl shadow-lg ${
-          message.role === "user"
-            ? "bg-primary text-primary-foreground rounded-br-none"
-            : "bg-background rounded-bl-none border border-border"
-        }`}
+        className={`flex max-w-lg p-3 rounded-xl shadow-lg ${ message.role === "user" ? "bg-primary text-primary-foreground rounded-br-none" : "bg-background rounded-bl-none border border-border" }`}
       >
         <div className="mr-3 mt-1">
           {message.role === "user" ? <User className="h-5 w-5" /> : <Bot className="h-5 w-5 text-accent" />}
@@ -235,13 +231,13 @@ const Chatbot = () => {
   );
 
   return (
-    <div className="min-h-screen gradient-cosmic">
+    <div className="min-h-screen">
       <div className="mr-64 p-8">
         <div className="max-w-4xl mx-auto h-[calc(100vh-64px)] flex flex-col">
           <header className="mb-4 animate-fade-in flex justify-between items-start">
             <div>
               <h1 className="text-4xl font-bold mb-2 flex items-center">
-                <Zap className="h-8 w-8 mr-3 text-primary animate-pulse-glow" /> VoltChain Chatbot
+                <Zap className="h-8 w-8 mr-3 text-primary" /> VoltChain Chatbot
               </h1>
               <p className="text-muted-foreground">
                 Ask me anything about your energy data or the marketplace.
@@ -253,7 +249,7 @@ const Chatbot = () => {
           </header>
 
           {/* Chat Area */}
-          <Card className="flex-grow p-6 bg-card/50 backdrop-blur-sm border-border card-shadow flex flex-col overflow-hidden">
+          <Card className="flex-grow p-6 bg-card/50 backdrop-blur-sm border-border flex flex-col overflow-hidden">
             <div className="flex-grow overflow-y-auto mb-4 pr-4 custom-scrollbar">
               {messages.map((msg) => (
                 <MessageBubble key={msg.id} message={msg} />
@@ -294,7 +290,7 @@ const Chatbot = () => {
 
           {/* Contact Us Section */}
           {showContact && (
-            <Card className="mt-4 p-6 bg-card/50 backdrop-blur-sm border-border card-shadow animate-slide-up">
+            <Card className="mt-4 p-6 bg-card/50 backdrop-blur-sm border-border animate-slide-up">
               <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
                 <Mail className="h-6 w-6 text-primary" /> Contact Us
               </h2>

@@ -24,7 +24,7 @@ interface TransactionContextProps {
 const Wallet: React.FC = () => {
   return (
     <TransactionsProvider>
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-indigo-900 flex flex-col">
+      <div className="min-h-screen flex flex-col">
         <Navbar />
         <div className="flex flex-1 items-start justify-center p-6 gap-10 md:gap-20">
           <WalletContent />
@@ -40,8 +40,8 @@ const Navbar: React.FC = () => {
   return (
     <div className="flex items-center justify-between px-6 py-4 bg-white/10 backdrop-blur-md border-b border-white/20 shadow-md">
       <div className="flex items-center gap-2">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-zap h-8 w-8 text-primary animate-pulse-glow" data-lov-id="src\components\Sidebar.tsx:45:10" data-lov-name="Zap" data-component-path="src\components\Sidebar.tsx" data-component-line="45" data-component-file="Sidebar.tsx" data-component-name="Zap" data-component-content="%7B%22className%22%3A%22h-8%20w-8%20text-primary%20animate-pulse-glow%22%7D"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg>
-        <h1 data-lov-id="src\components\Sidebar.tsx:46:10" data-lov-name="h1" data-component-path="src\components\Sidebar.tsx" data-component-line="46" data-component-file="Sidebar.tsx" data-component-name="h1" data-component-content="%7B%22text%22%3A%22VoltChain%22%2C%22className%22%3A%22text-4xl%20font-bold%20bg-gradient-to-r%20from-cyan-400%20via-blue-500%20to-purple-500%20bg-clip-text%20text-transparent%22%7D" className="text-4xl font-bold bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">VoltChain</h1>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-zap h-8 w-8 text-primary" data-lov-id="src\components\Sidebar.tsx:45:10" data-lov-name="Zap" data-component-path="src\components\Sidebar.tsx" data-component-line="45" data-component-file="Sidebar.tsx" data-component-name="Zap" data-component-content="%7B%22className%22%3A%22h-8%20w-8%20text-primary%20animate-pulse-glow%22%7D"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg>
+        <h1 data-lov-id="src\components\Sidebar.tsx:46:10" data-lov-name="h1" data-component-path="src\components\Sidebar.tsx" data-component-line="46" data-component-file="Sidebar.tsx" data-component-name="h1" data-component-content="%7B%22text%22%3A%22VoltChain%22%2C%22className%22%3A%22text-4xl%20font-bold%20bg-gradient-to-r%20from-cyan-400%20via-blue-500%20to-purple-500%20bg-clip-text%20text-transparent%22%7D" className="text-4xl font-bold">VoltChain</h1>
       </div>
       <div className="hidden md:flex gap-6">
         {links.map((link, idx) => (
@@ -187,7 +187,7 @@ const WalletContent: React.FC = () => {
 
             <button
               onClick={sendTransaction}
-              className="w-full py-3 bg-gradient-to-r from-[#00f6ff] to-[#ff00d0] rounded-full text-white font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 mt-2"
+              className="w-full py-3 from-[#00f6ff] to-[#ff00d0] rounded-full text-white font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 mt-2"
             >
               {isLoading ? "Sending..." : "Send Now"}
             </button>

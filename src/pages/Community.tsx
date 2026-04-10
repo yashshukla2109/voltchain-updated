@@ -83,7 +83,7 @@ const Community = () => {
   };
 
   return (
-    <div className="min-h-screen gradient-cosmic">
+    <div className="min-h-screen">
       <div className="mr-64 p-8">
         <div className="max-w-4xl mx-auto">
           {/* New Post */}

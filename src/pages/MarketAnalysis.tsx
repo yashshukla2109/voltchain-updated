@@ -92,7 +92,7 @@ const MarketAnalysis: React.FC = () => {
 
   // ---------- RENDER ----------
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white">
+    <div className="min-h-screen via-black text-white">
       <div className="mr-64 p-8">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
@@ -105,7 +105,7 @@ const MarketAnalysis: React.FC = () => {
 
           {/* Top Metrics */}
           <div className="grid md:grid-cols-3 gap-6 mb-8">
-            <Card className="p-6 bg-card/50 backdrop-blur-sm border-border card-shadow hover:scale-105 transition-transform duration-300 animate-slide-up">
+            <Card className="p-6 bg-card/50 backdrop-blur-sm border-border hover:scale-105 transition-transform duration-300 animate-slide-up">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-sm font-medium text-muted-foreground">
                   Current Price
@@ -120,7 +120,7 @@ const MarketAnalysis: React.FC = () => {
               </p>
             </Card>
 
-            <Card className="p-6 bg-card/50 backdrop-blur-sm border-border card-shadow hover:scale-105 transition-transform duration-300 animate-slide-up">
+            <Card className="p-6 bg-card/50 backdrop-blur-sm border-border hover:scale-105 transition-transform duration-300 animate-slide-up">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-sm font-medium text-muted-foreground">
                   24h Volume
@@ -131,7 +131,7 @@ const MarketAnalysis: React.FC = () => {
               <p className="text-sm text-muted-foreground">Across 142 trades</p>
             </Card>
 
-            <Card className="p-6 bg-card/50 backdrop-blur-sm border-border card-shadow hover:scale-105 transition-transform duration-300 animate-slide-up">
+            <Card className="p-6 bg-card/50 backdrop-blur-sm border-border hover:scale-105 transition-transform duration-300 animate-slide-up">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-sm font-medium text-muted-foreground">
                   Avg. Price
@@ -156,7 +156,7 @@ const MarketAnalysis: React.FC = () => {
 
           {/* Chart + Insights */}
           <div className="grid md:grid-cols-2 gap-6">
-            <Card className="p-6 bg-card/50 backdrop-blur-sm border-border card-shadow animate-slide-up">
+            <Card className="p-6 bg-card/50 backdrop-blur-sm border-border animate-slide-up">
               <div className="flex justify-between items-center mb-4">
                 <h3 className="text-xl font-bold">Price History</h3>
                 <div className="flex gap-2">
@@ -166,11 +166,7 @@ const MarketAnalysis: React.FC = () => {
                       onClick={() =>
                         setPeriod(p as "week" | "month" | "year")
                       }
-                      className={`px-3 py-1 rounded ${
-                        period === p
-                          ? "bg-accent text-black font-bold"
-                          : "bg-background text-white"
-                      }`}
+                      className={`px-3 py-1 rounded ${ period === p ? "bg-accent text-black font-bold" : "bg-background text-white" }`}
                     >
                       {p.charAt(0).toUpperCase() + p.slice(1)}
                     </button>
@@ -219,7 +215,7 @@ const MarketAnalysis: React.FC = () => {
             </Card>
 
             {/* Market Insights */}
-            <Card className="p-6 bg-card/50 backdrop-blur-sm border-border card-shadow animate-slide-up">
+            <Card className="p-6 bg-card/50 backdrop-blur-sm border-border animate-slide-up">
               <h3 className="text-xl font-bold mb-4">Market Insights</h3>
               <div className="space-y-4">
                 {insights.map((insight, idx) => (
@@ -227,13 +223,7 @@ const MarketAnalysis: React.FC = () => {
                     <div className="flex items-start justify-between mb-2">
                       <h4 className="font-bold">{insight.title}</h4>
                       <span
-                        className={`text-xs px-2 py-1 rounded ${
-                          insight.trend === "up"
-                            ? "bg-accent/20 text-accent"
-                            : insight.trend === "down"
-                            ? "bg-destructive/20 text-destructive"
-                            : "bg-muted text-muted-foreground"
-                        }`}
+                        className={`text-xs px-2 py-1 rounded ${ insight.trend === "up" ? "bg-accent/20 text-accent" : insight.trend === "down" ? "bg-destructive/20 text-destructive" : "bg-muted text-muted-foreground" }`}
                       >
                         {insight.trend}
                       </span>

@@ -61,12 +61,12 @@ const Login = () => {
 
 
   return (
-    <div className="min-h-screen gradient-cosmic flex items-center justify-center px-4">
+    <div className="min-h-screen flex items-center justify-center px-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8 animate-fade-in">
           <div className="flex items-center justify-center gap-2 mb-4">
-            <Zap className="h-12 w-12 text-primary animate-pulse-glow" />
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
+            <Zap className="h-12 w-12 text-primary" />
+            <h1 className="text-4xl font-bold">
               VoltChain
             </h1>
           </div>
@@ -75,7 +75,7 @@ const Login = () => {
           </p>
         </div>
 
-        <div className="bg-card/50 backdrop-blur-xl p-8 rounded-2xl border border-border card-shadow animate-slide-up">
+        <div className="bg-card/50 backdrop-blur-xl p-8 rounded-2xl border border-border animate-slide-up">
           <h2 className="text-2xl font-bold mb-6">Sign In</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
@@ -104,7 +104,7 @@ const Login = () => {
             </div>
             <Button
               type="submit"
-              className="w-full glow-primary"
+              className="w-full"
               disabled={loading}
             >
               {loading ? "Signing In..." : "Sign In"}

@@ -83,7 +83,7 @@ const Account = () => {
   if (loading) return <p className="p-8 text-center">Loading...</p>;
 
   return (
-    <div className="min-h-screen gradient-cosmic">
+    <div className="min-h-screen">
       <div className="mr-64 p-8">
         <div className="max-w-4xl mx-auto">
           <header className="mb-8 flex items-center justify-between">
@@ -97,7 +97,7 @@ const Account = () => {
           </header>
 
           {/* Personal Info */}
-          <Card className="p-6 mb-6 bg-card/50 backdrop-blur-sm border-border card-shadow">
+          <Card className="p-6 mb-6 bg-card/50 backdrop-blur-sm border-border">
             <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
               <User className="h-5 w-5 text-primary" /> Personal Information
             </h3>
@@ -126,7 +126,7 @@ const Account = () => {
           </Card>
 
           {/* Solar Panel Info (one-time) */}
-          <Card className="p-6 mb-6 bg-card/50 backdrop-blur-sm border-border card-shadow">
+          <Card className="p-6 mb-6 bg-card/50 backdrop-blur-sm border-border">
             <h3 className="text-xl font-bold mb-6">Solar Panel Information</h3>
             {panelLoaded ? (
               <div className="grid md:grid-cols-2 gap-4">
@@ -171,7 +171,7 @@ const Account = () => {
           </Card>
 
           {/* Change Password */}
-          <Card className="p-6 bg-card/50 border-border card-shadow">
+          <Card className="p-6 bg-card/50 border-border">
             <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
               <Lock className="h-5 w-5 text-primary" /> Change Password
             </h3>

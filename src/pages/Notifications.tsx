@@ -62,7 +62,7 @@ const Notifications = () => {
   };
 
   return (
-    <div className="min-h-screen gradient-cosmic">
+    <div className="min-h-screen">
       <div className="mr-64 p-8">
         <div className="max-w-4xl mx-auto">
           <header className="mb-8 animate-fade-in">
@@ -77,9 +77,7 @@ const Notifications = () => {
             {notifications.map((notification, idx) => (
               <Card
                 key={notification.id}
-                className={`p-6 bg-card/50 backdrop-blur-sm border-border card-shadow animate-slide-up hover:scale-[1.01] transition-all duration-300 ${
-                  notification.unread ? "border-l-4 border-l-primary" : ""
-                }`}
+                className={`p-6 bg-card/50 backdrop-blur-sm border-border animate-slide-up hover:scale-[1.01] transition-all duration-300 ${ notification.unread ? "border-l-4 border-l-primary" : "" }`}
                 style={{ animationDelay: `${idx * 0.05}s` }}
               >
                 <div className="flex items-start gap-4">

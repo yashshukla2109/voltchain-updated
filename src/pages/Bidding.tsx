@@ -134,7 +134,7 @@ const Bidding = () => {
   };
 
   return (
-    <div className="min-h-screen gradient-cosmic">
+    <div className="min-h-screen">
       <div className="mr-64 p-8">
         <div className="max-w-7xl mx-auto">
           <header className="mb-8 animate-fade-in">
@@ -143,7 +143,7 @@ const Bidding = () => {
           </header>
 
           {/* Add New Auction Form */}
-          <Card className="p-6 mb-10 bg-card/50 backdrop-blur-sm border-border card-shadow">
+          <Card className="p-6 mb-10 bg-card/50 backdrop-blur-sm border-border">
             <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
               <Plus className="h-6 w-6 text-primary" /> Add New Auction
             </h2>
@@ -193,7 +193,7 @@ const Bidding = () => {
             {auctions.map((auction, idx) => (
               <Card
                 key={auction.id}
-                className="p-6 bg-card/50 backdrop-blur-sm border-border card-shadow animate-slide-up hover:scale-[1.02] transition-transform duration-300"
+                className="p-6 bg-card/50 backdrop-blur-sm border-border animate-slide-up hover:scale-[1.02] transition-transform duration-300"
                 style={{ animationDelay: `${idx * 0.1}s` }}
               >
                 <div className="flex items-start justify-between mb-4">

@@ -4,12 +4,12 @@ import { Zap, ArrowRight, Shield, TrendingUp, Users } from "lucide-react";
 
 const Index = () => {
   return (
-    <div className="min-h-screen gradient-cosmic">
+    <div className="min-h-screen">
       <div className="container mx-auto px-4 py-8">
         <header className="flex items-center justify-between mb-20">
           <div className="flex items-center gap-2">
-            <Zap className="h-10 w-10 text-primary animate-pulse-glow" />
-           <h1 className="text-3xl font-bold bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
+            <Zap className="h-10 w-10 text-primary" />
+           <h1 className="text-3xl font-bold">
   VoltChain
 </h1>
 
@@ -31,7 +31,7 @@ const Index = () => {
             <h2 className="text-6xl font-bold mb-6 leading-tight">
               The Future of
               <br />   
-            <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent font-semibold">
+            <span className="font-semibold">
   Energy Trading
 </span>
 
@@ -43,7 +43,7 @@ const Index = () => {
               decentralized energy marketplace for a sustainable future.
             </p>
             <Link to="/signup">
-              <Button size="lg" className="gap-2 glow-primary text-lg px-8 py-6">
+              <Button size="lg" className="gap-2 text-lg px-8 py-6">
                 Start Trading <ArrowRight className="h-5 w-5" />
               </Button>
             </Link>
@@ -69,7 +69,7 @@ const Index = () => {
             ].map((feature, idx) => (
               <div
                 key={idx}
-                className="bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border card-shadow hover:scale-105 transition-transform duration-300 animate-slide-up"
+                className="bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border hover:scale-105 transition-transform duration-300 animate-slide-up"
                 style={{ animationDelay: `${idx * 0.1}s` }}
               >
                 <feature.icon className="h-12 w-12 text-primary mb-4" />
@@ -79,7 +79,7 @@ const Index = () => {
             ))}
           </section>
 
-          <section className="bg-card/30 backdrop-blur-sm rounded-3xl p-12 border border-border card-shadow text-center">
+          <section className="bg-card/30 backdrop-blur-sm rounded-3xl p-12 border border-border text-center">
             <h3 className="text-4xl font-bold mb-6">Ready to revolutionize energy?</h3>
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
               Join thousands of solar panel owners trading energy on the blockchain

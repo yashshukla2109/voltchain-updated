@@ -118,7 +118,7 @@ const Marketplace = () => {
   };
 
   return (
-    <div className="min-h-screen gradient-cosmic">
+    <div className="min-h-screen">
       <div className="mr-64 p-8">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
@@ -131,7 +131,7 @@ const Marketplace = () => {
 
           <div className="grid md:grid-cols-3 gap-8 mb-8">
             {/* List Energy Section */}
-            <Card className="md:col-span-1 p-6 bg-card/50 backdrop-blur-sm border-border card-shadow animate-slide-up">
+            <Card className="md:col-span-1 p-6 bg-card/50 backdrop-blur-sm border-border animate-slide-up">
               <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
                 <Zap className="h-5 w-5 text-accent" />
                 List Your Energy
@@ -195,7 +195,7 @@ const Marketplace = () => {
             </Card>
 
             {/* Available Listings */}
-            <Card className="md:col-span-2 p-6 bg-card/50 backdrop-blur-sm border-border card-shadow animate-slide-up">
+            <Card className="md:col-span-2 p-6 bg-card/50 backdrop-blur-sm border-border animate-slide-up">
               <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
                 <ShoppingCart className="h-5 w-5 text-primary" />
                 Available Listings
